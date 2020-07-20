@@ -8,14 +8,37 @@ import axios from 'axios';
 
 class App extends Component {
   state = {
-    todos: [
-      {
-      id: nextId,
-      title: 'Test Item',
-      completed: false
-      }
-    ]
+    todos: []
   }
+
+  // constructor (props){
+  //   super(props);
+  //     this.state = {
+  //       todo:[],
+  //       activeItem:{
+  //         id: null, 
+  //         title: '', 
+  //         completed: false,
+  //       },
+  //       editing: false, 
+  //     }
+  //     // Bind fetchTasks with this method
+  //     this.fetchTasks = this.fetchTasks.bind(this)
+  // };
+
+  // componentWillMount(){
+  //   this.fetchTasks()
+  // }
+
+  // fetchTasks(){
+  //   console.log('Fetching...')
+  // }
+
+  componentDidMount() {
+      axios
+        .get('http://127.0.0.1:8000/api/task-list/')
+        .then(res => this.setState({ todos: res.data }));
+    }
 
   // Below JSON placeholder to imitate backend server
   // componentDidMount() {
