@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'; 
+import Checkbox from './CheckBox'
 
 class TodoItem extends Component {
     getStyle = () =>{
         return {
-            backgroundColor: '#f4f4f4',
-            padding: '10px', 
-            borderBottom: '1px #ccc dotted', 
-            textDecoration: this.props.todo.completed ? 'line-through' : 'none'
+            margin: "10px",
+            backgroundColor: '#DFDADA',
+            padding: '2px', 
+            textAlign: 'center',
+            textDecoration: this.props.todo.completed ? 'line-through' : 'none',
+            color: this.props.todo.completed ? '#949BA0' : 'black',
+            width: "100px,"
+
         }
     }
 
@@ -16,7 +21,8 @@ class TodoItem extends Component {
         return (
             <div style={this.getStyle()}>
                 <p>
-                    <input type="checkbox" onChange={this.props.markComplete.bind(this, id, title, completed)}/> {' '}
+                    {/* <Checkbox completed onChange={this.props.markComplete.bind(this, id, title, completed)}/> */}
+                    <input type="checkbox" autoComplete="off" onChange={this.props.markComplete.bind(this, id, title, completed)}/> {' '}
                     {title}
                     <button style={btnStyle} onClick={this.props.deleteTodoItem.bind(this, id)}>x</button>
                 </p>
@@ -31,13 +37,13 @@ TodoItem.propTypes = {
 }
 
 const btnStyle = {
-    background: '#ff0000',
+    background: '#E81B1B',
     color: '#fff',
     border: 'none',
-    padding: '5px 10px',
+    padding: '3.5px 7px',
     borderRadius: '50%',
     cursor: 'pointer',
-    float: 'right'
+    margin: '5px 20px',
 }
  
 export default TodoItem;

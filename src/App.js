@@ -11,41 +11,11 @@ class App extends Component {
     todos: []
   }
 
-  // constructor (props){
-  //   super(props);
-  //     this.state = {
-  //       todo:[],
-  //       activeItem:{
-  //         id: null, 
-  //         title: '', 
-  //         completed: false,
-  //       },
-  //       editing: false, 
-  //     }
-  //     // Bind fetchTasks with this method
-  //     this.fetchTasks = this.fetchTasks.bind(this)
-  // };
-
-  // componentWillMount(){
-  //   this.fetchTasks()
-  // }
-
-  // fetchTasks(){
-  //   console.log('Fetching...')
-  // }
-
   componentDidMount() {
       axios
         .get('http://127.0.0.1:8000/api/task-list/')
         .then(res => this.setState({ todos: res.data }));
     }
-
-  // Below JSON placeholder to imitate backend server
-  // componentDidMount() {
-  //   axios
-  //     .get('https://jsonplaceholder.typicode.com/todos?_limit=10')
-  //     .then(res => this.setState({ todos: res.data }));
-  // }
 
   // Toggle complete
   markComplete = (id, title, completed) => {
@@ -73,11 +43,6 @@ class App extends Component {
 
   //Add Todo
   addTodo = (title) => {
-    // const newTodo = {
-    //   id: nextId(),
-    //   title: title,
-    //   completed: false,
-    // }
     axios
       .post ('http://127.0.0.1:8000/api/task-create/', {
         title,

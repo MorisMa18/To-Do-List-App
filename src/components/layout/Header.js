@@ -4,16 +4,16 @@ function Header () {
     return (
         <header style={headerStyle}>
             <h1> 
-                To-Do List
+                ToDoz
             </h1>
         </header>
     )
 }
 
 const headerStyle ={
-    background: '#333', 
+    background: '#2E98E1', 
     color: '#fff',
-    textAlign: 'center',
+    textAlign: 'left',
     padding: '10px'
 }
 
