@@ -48,19 +48,16 @@ class App extends Component {
   // }
 
   // Toggle complete
-  markComplete = (id) => {
+  markComplete = (id, title, completed) => {
     this.setState({todos:this.state.todos.map(todo => {
       if (todo.id === id){
         todo.completed = !todo.completed; 
         axios 
-          .put (`http://127.0.0.1:8000/api/task-update/${id}/`, 
-          {data:
-            todo.title: todo.tile,
-            todo.completed: !todo.completed
-          })
-          .then (res => console.log(res.title))
+          .post (`http://127.0.0.1:8000/api/task-update/${id}/`, {
+            title, 
+            completed: !completed
+          }) 
       }
-      // todos: [...this.state.todos, res.data]
       return todo;
     })})
   }
