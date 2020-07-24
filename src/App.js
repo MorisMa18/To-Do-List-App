@@ -51,26 +51,43 @@ class App extends Component {
   markComplete = (id) => {
     this.setState({todos:this.state.todos.map(todo => {
       if (todo.id === id){
-        todo.completed = !todo.completed 
+        todo.completed = !todo.completed; 
+        axios 
+          .put (`http://127.0.0.1:8000/api/task-update/${id}/`, 
+          {data:
+            todo.title: todo.tile,
+            todo.completed: !todo.completed
+          })
+          .then (res => console.log(res.title))
       }
+      // todos: [...this.state.todos, res.data]
       return todo;
     })})
   }
 
   // Delete Todo 
   deleteTodoItem = (id) => {
-    this.setState({todos: [...this.state.todos.filter(todo => todo.id != id
-    )]}); 
+    axios
+      .delete(`http://127.0.0.1:8000/api/task-delete/${id}/`)
+      .then (res => this.setState({todos: [...this.state.todos.filter(todo => todo.id != id
+    )]})); 
+    
   }
 
   //Add Todo
   addTodo = (title) => {
-    const newTodo = {
-      id: nextId(),
-      title: title,
-      completed: false,
-    }
-    this.setState({todos: [...this.state.todos, newTodo]});
+    // const newTodo = {
+    //   id: nextId(),
+    //   title: title,
+    //   completed: false,
+    // }
+    axios
+      .post ('http://127.0.0.1:8000/api/task-create/', {
+        title,
+        completed: false
+    })
+      .then (res => this.setState({todos: [...this.state.todos, res.data]}));
+    
   }
 
   render(){
