@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'; 
-import Checkbox from './CheckBox'
+import Checkbox from '@material-ui/core/Checkbox'; 
+import { withStyles } from '@material-ui/core/styles'; 
+import { blue } from '@material-ui/core/colors';
+
+const BlueCheckbox = withStyles ({
+    root: {
+        color: blue [400], 
+    }
+})
 
 class TodoItem extends Component {
     getStyle = () =>{
@@ -21,8 +29,7 @@ class TodoItem extends Component {
         return (
             <div style={this.getStyle()}>
                 <p>
-                    {/* <Checkbox completed onChange={this.props.markComplete.bind(this, id, title, completed)}/> */}
-                    <input type="checkbox" autoComplete="off" onChange={this.props.markComplete.bind(this, id, title, completed)}/> {' '}
+                    <Checkbox checked={completed} onChange={this.props.markComplete.bind(this, id, title, completed)}/>
                     {title}
                     <button style={btnStyle} onClick={this.props.deleteTodoItem.bind(this, id)}>x</button>
                 </p>

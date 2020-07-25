@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'; 
+import TextField from '@material-ui/core/TextField'; 
+import Button from '@material-ui/core/Button'; 
+import { TextareaAutosize } from '@material-ui/core';
 
 class AddTodo extends Component {
     constructor(props){
@@ -7,7 +10,6 @@ class AddTodo extends Component {
         this.state ={
             title: ''
         }
-        this.baseState = this.state
     }
 
     onChange = (event) => {
@@ -15,43 +17,41 @@ class AddTodo extends Component {
     }
 
     onSubmit = (event) => {
-        this.props.addTodo(this.state.title);
-
+        this.props.addTodo(this.state.title); 
         //Below line prevents JS to submit to the actual file
         //Commented out because it prevents the field to reset title
         // event.preventDefault();
 
         //Below line reset the field to blank when submitted
-        this.setState(this.baseState); 
-        console.log ('reset'); 
+        // this.setState({title: ''});
     }
 
     render() { 
         return ( 
            <form onSubmit={this.onSubmit} style={headerStyle}>
-               <input
-                    type="text"
-                    name="title"
-                    style={{flex: '10', padding: '5px', alignItems: 'center'}}
-                    placeholder="Add Todo..."
+               <TextField 
+                    label="Add Todo..."
+                    name = "title"
+                    defaultValue = ''
                     onChange = {this.onChange}
-                />
-               <input
+                    style={{flex: '5', padding: '5px', alignItems: 'center'}}
+                /> 
+                <Button 
+                    variant="contained"
+                    color="primary"
                     type="submit"
-                    value="Submit"
-                    className="btn"
-                    style={{flex:'1'}}
-                />
+                    style={{margin:'10px'}}
+                >
+                Submit
+                </Button>  
            </form>
          );
     }
 }
 
 const headerStyle = {
-    display: 'flex', 
-    width: '200px,',
-    justifyContent:'center'
-
+   textAlign: 'center',
+   marginTop: '4.5rem',
 }
  
 export default AddTodo; 
